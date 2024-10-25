@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import nova.business.mapper.TicketMapper;
 import nova.business.util.TicketFiltro;
 import nova.common.EntityException;
-import nova.domain.entity.Ticket;
 import nova.domain.entity.query.TicketDetallesQuery;
 import nova.persistence.TicketRepository;
 import nova.persistence.TicketRepositoryCustom;
@@ -22,7 +21,7 @@ public class TicketServiceImpl implements ITicketService {
     private final TicketRepositoryCustom repository;
     private final TicketMapper mapper;
 
-    public Map<String, Object> buscarTicketsConFiltro(TicketFiltro filtro) {
+    public Map<String, Object> searchTicketsByFiltro(TicketFiltro filtro) {
 
         Pageable pageable = PageRequest.of(filtro.getPage(), filtro.getSize(), Sort.by(filtro.getOrderBy() != null ? filtro.getOrderBy() : "creado").descending());
         return repository.findByFiltro(filtro);
@@ -34,7 +33,7 @@ public class TicketServiceImpl implements ITicketService {
     }
 
     @Override
-    public Ticket getDetallesByFolio(String folio) {
-        return ticketRepository.findByFolio(folio).orElseThrow(() -> new EntityException("E1005", "No se encontró el ticket especificado"));
+    public TicketDetallesQuery getDetallesByFolio(String folio) {
+        return ticketRepository.findByFolio(folio).orElseThrow(() -> new EntityException("E1005","No se encontró el ticket especificado"));
     }
 }

@@ -14,17 +14,15 @@ public interface TicketMapper {
     @Mapping(target = "reporte", source = "reporte")
     TicketDto toDto(Ticket ticket);
 
-    @Mapping(source = "usuarioNombre", target = "usuario.nombre")
-    @Mapping(source = "usuarioClave", target = "usuario.clave")
-    @Mapping(source = "usuarioId", target = "usuario.id")
-    @Mapping(source = "reporteNombre", target = "reporte.nombre")
-    @Mapping(source = "reporteAreaNombre", target = "area.nombre")
-    @Mapping(source = "reporteAreaId", target = "area.id")
-    @Mapping(source = "reporteId", target = "reporte.id")
-    @Mapping(source = "estatusNombre", target = "estatus.nombre")
-    @Mapping(source = "estatusId", target = "estatus.id")
-    @Mapping(source = "unidadNombre", target = "unidad.nombre")
-    @Mapping(source = "unidadClave", target = "unidad.clave")
-    @Mapping(source = "unidadId", target = "unidad.id")
+    @Mapping(target = "area.id", source = "reporteAreaId")
+    @Mapping(target = "area.nombre", source = "reporteAreaNombre")
+    @Mapping(target = "reporte.id", source = "reporteId")
+    @Mapping(target = "reporte.nombre", source = "reporteNombre")
+    @Mapping(target = "creado", source = "creado")
+    @Mapping(target = "estatus.id", source = "estatusId")
+    @Mapping(target = "estatus.nombre", source = "estatusNombre")
+    @Mapping(target = "unidad.id", source = "unidadId")
+    @Mapping(target = "unidad.clave", source = "unidadClave")
+    @Mapping(target = "unidad.nombre", source = "unidadNombre")
     TicketDto queryToDto(TicketDetallesQuery ticket);
 }
