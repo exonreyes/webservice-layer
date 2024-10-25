@@ -1,0 +1,66 @@
+
+project:
+  version: 1.0.0
+server:
+  error:
+    include-stacktrace: on_param
+  port: 4000
+  address: 0.0.0.0
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/javascript, application/json
+  servlet:
+    context-path: /comialex/api/v1
+spring:
+  jackson:
+    time-zone: America/Mexico_City
+    default-property-inclusion: non_null
+#    property-naming-strategy: SNAKE_CASE
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/nova?useSSL=false
+    username: root
+    password: exon1704
+    hikari:
+      maximum-pool-size: 30
+      connection-timeout: 30000  # 30 segundos
+      idle-timeout: 600000       # 10 minutos
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+    properties:
+      hibernate:
+        default_schema: nova
+    #        format_sql: true
+    show-sql: true
+    open-in-view: false
+  application:
+    name: nova
+    #Latencia en la primera solicitud.
+    #    Dado que los beans no se crean hasta que son necesarios, la primera solicitud HTTP que
+    #    activa la creación de un bean específico experimentará un retraso adicional.
+    #    Este retraso se debe a que Spring necesita tiempo para crear e inicializar el bean antes
+    #    de procesar la solicitud. Para un ambiente web es mejor que esté en FALSE
+    #  main:
+    #    lazy-initialization: true
+
+  test:
+    database:
+      replace: none
+#
+#logging:
+#  level:
+#    root: warn
+#logging:
+#  level:
+#    root: debug
+#    org.springframework.web: info
+#    org.springframework.web.servlet.DispatcherServlet: INFO
+#  file:
+#    path: logs
+#    name: application.log
+#  pattern:
+#    console: "%d{HH:mm:ss.SSS} [%thread] %msg%n"
+#    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
