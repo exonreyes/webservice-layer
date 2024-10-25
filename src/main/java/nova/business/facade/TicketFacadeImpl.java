@@ -28,7 +28,7 @@ public class TicketFacadeImpl implements TicketFacade {
                 .areaId(filter.getAreaId())
                 .folio(filter.getFolio())
                 .build();
-        return service.buscarTicketsConFiltro(filtro);
+        return service.searchTicketsByFiltro(filtro);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class TicketFacadeImpl implements TicketFacade {
 
     @Override
     public TicketDto getDetallesByFolio(String folio) {
-        return mapper.toDto(service.getDetallesByFolio(folio));
+        return mapper.queryToDto(service.getDetallesByFolio(folio));
     }
 
 }
