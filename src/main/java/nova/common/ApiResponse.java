@@ -9,5 +9,6 @@ public final class ApiResponse {
     private Object data;
     private String code;
     private String message;
+    private Object page;
 }
 

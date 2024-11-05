@@ -31,6 +31,7 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
         // Unir entidades relacionadas
         Join<Object, Object> unidadJoin = ticket.join("unidad", JoinType.INNER);
         Join<Object, Object> reporteJoin = ticket.join("reporte", JoinType.INNER);
+        Join<Object, Object> estatusJoin = ticket.join("estatus", JoinType.INNER);
 
         // Seleccionar los campos para mapear a TicketInfoDTO
         cq.select(cb.construct(
@@ -42,6 +43,7 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
                 reporteJoin.get("area").get("nombre"), // Asegúrate que estos atributos existan
                 ticket.get("folio"),
                 ticket.get("agente"),
+                estatusJoin.get("nombre"),
                 ticket.get("creado")
         ));
 
@@ -90,7 +92,7 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
         Page<TicketInfoQuery> page = new PageImpl<>(resultList, PageRequest.of(filtro.getPage(), filtro.getSize()), totalResults);
         Map<String, Object> pageResult = new HashMap<>();
         pageResult.put("rows", page.getNumberOfElements());
-        pageResult.put("total", page.getTotalElements());
+        pageResult.put("totalElements", page.getTotalElements());
         pageResult.put("pageCount", page.getTotalPages());
 
         // Devolver respuesta paginada

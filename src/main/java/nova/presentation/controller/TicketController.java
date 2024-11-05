@@ -28,7 +28,8 @@ public class TicketController {
 
     @GetMapping
     public ResponseEntity<ApiResponse> getByFiltro(@Valid TicketFiltroRequest filtro) {
-        return ResponseEntity.ok(ApiResponse.builder().data(ticketFacade.getByFiltro(filtro)).build());
+        var data=ticketFacade.getByFiltro(filtro);
+        return ResponseEntity.ok(ApiResponse.builder().data(data.get("data")).page(data.get("page")).build());
     }
 
     @GetMapping("detalles/id")
