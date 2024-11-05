@@ -1,6 +1,7 @@
 package nova.business.service;
 
 import nova.business.util.TicketFiltro;
+import nova.domain.entity.Ticket;
 import nova.domain.entity.query.TicketDetallesQuery;
 
 import java.util.Map;
@@ -11,4 +12,7 @@ public interface ITicketService {
     TicketDetallesQuery getDetallesById(Integer id);
 
     TicketDetallesQuery getDetallesByFolio(String folio);
+
+    Ticket addTicket(Ticket ticket);
+
 }

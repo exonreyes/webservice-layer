@@ -41,7 +41,7 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
                 reporteJoin.get("nombre"), // Asegúrate que estos atributos existan en la entidad Reporte
                 reporteJoin.get("area").get("nombre"), // Asegúrate que estos atributos existan
                 ticket.get("folio"),
-                ticket.get("comentario"),
+                ticket.get("agente"),
                 ticket.get("creado")
         ));
 

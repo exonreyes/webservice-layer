@@ -9,7 +9,6 @@ import java.util.List;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface OperatividadMapper {
 
-
     @AfterMapping
     default void linkHorarios(@MappingTarget Operatividad operatividad) {
         operatividad.getHorarios().forEach(horario -> horario.setOperatividad(operatividad));

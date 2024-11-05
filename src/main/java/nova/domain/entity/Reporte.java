@@ -29,4 +29,10 @@ public class Reporte {
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
+    public Reporte() {
+    }
+
+    public Reporte(Integer id) {
+        this.id = id;
+    }
 }

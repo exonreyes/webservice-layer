@@ -6,7 +6,6 @@ import jakarta.validation.constraints.PastOrPresent;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Getter
@@ -26,7 +25,7 @@ public class TicketFiltroRequest {
     private String folio;
 
     @PastOrPresent
-    private Instant desde;
+    private LocalDateTime desde;
 
-    private Instant hasta;
+    private LocalDateTime hasta;
 }

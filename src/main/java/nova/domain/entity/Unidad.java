@@ -32,4 +32,10 @@ public class Unidad {
     @OneToMany(mappedBy = "unidad")
     private Set<ContactoUnidad> contactoUnidads = new LinkedHashSet<>();
 
+    public Unidad() {
+    }
+
+    public Unidad(Integer id) {
+        this.id = id;
+    }
 }

@@ -11,4 +11,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     Optional<TicketDetallesQuery> findByFolio(String folio);
 
+    boolean existsByFolio(String folio);
+
 }

@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface IUnidadService {
     List<Unidad> getUnidades();
+
     ContactoUnidad getContacto(Integer id);
 }

@@ -21,4 +21,10 @@ public class Estatus {
     @Column(name = "nombre", nullable = false, length = 30)
     private String nombre;
 
+    public Estatus() {
+    }
+
+    public Estatus(Integer id) {
+        this.id = id;
+    }
 }

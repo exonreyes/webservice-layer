@@ -2,10 +2,12 @@ package nova.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 import nova.domain.entity.Ticket;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * DTO for {@link Ticket}
@@ -22,8 +24,10 @@ public class TicketDto implements Serializable {
     private final String folio;
     private final String agente;
     private final String comentario;
-    private final Instant creado;
-    private final Instant actualizado;
+    private final LocalDateTime creado;
+    private final LocalDateTime actualizado;
     private final Boolean publicar;
+    @Setter
+    private List<ActividadTicketDto> actividades;
 
 }

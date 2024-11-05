@@ -8,7 +8,7 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -47,6 +47,6 @@ public class ActividadTicket {
     private String comentario;
 
     @Column(name = "creado")
-    private Instant creado;
+    private LocalDateTime creado;
 
 }

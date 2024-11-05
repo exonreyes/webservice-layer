@@ -18,6 +18,7 @@ public class OperatividadDto implements Serializable {
     private final Integer id;
     private final String nombre;
     private final Set<HorarioDto1> horarios;
+
     @AllArgsConstructor
     @Getter
     public static class HorarioDto1 implements Serializable {
@@ -25,6 +26,7 @@ public class OperatividadDto implements Serializable {
         private final OperatividadDto.HorarioDto1.UnidadDto1 unidad;
         private final LocalTime apertura;
         private final LocalTime cierre;
+
         @AllArgsConstructor
         @Getter
         public static class UnidadDto1 implements Serializable {

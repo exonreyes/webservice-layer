@@ -3,7 +3,6 @@ package nova.business.util;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Builder
@@ -16,6 +15,6 @@ public class TicketFiltro {
     private String orderBy;
     private Integer size;
     private String folio;
-    private Instant desde;
-    private Instant hasta;
+    private LocalDateTime desde;
+    private LocalDateTime hasta;
 }

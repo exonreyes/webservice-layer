@@ -26,4 +26,10 @@ public class Usuario {
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
+    public Usuario() {
+    }
+
+    public Usuario(Integer id) {
+        this.id = id;
+    }
 }
