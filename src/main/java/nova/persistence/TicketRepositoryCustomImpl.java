@@ -14,9 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
@@ -97,7 +95,7 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
         Page<TicketInfoQuery> page = new PageImpl<>(resultList, PageRequest.of(filtro.getPage(), filtro.getSize()), totalResults);
 
         // Devolver respuesta paginada
-        PageData<TicketInfoQuery> dataPage = new PageData<>(page.getContent(),new PageInfo(page.getNumberOfElements(),page.getTotalElements(),page.getTotalPages()));
+        PageData<TicketInfoQuery> dataPage = new PageData<>(page.getContent(), new PageInfo(page.getNumberOfElements(), page.getTotalElements(), page.getTotalPages()));
         return dataPage;
     }
 
