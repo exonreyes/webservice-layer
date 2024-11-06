@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import nova.business.facade.TicketFacade;
 import nova.common.ApiResponse;
+import nova.common.PageData;
 import nova.presentation.controller.request.ActividadCreateRequest;
 import nova.presentation.controller.request.TicketCreateRequest;
 import nova.presentation.controller.request.TicketFiltroRequest;
@@ -27,8 +28,8 @@ public class TicketController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse> getByFiltro(@Valid TicketFiltroRequest filtro) {
-        return ResponseEntity.ok(ApiResponse.builder().data(ticketFacade.getByFiltro(filtro)).build());
+    public ResponseEntity<PageData> getByFiltro(@Valid TicketFiltroRequest filtro) {
+        return ResponseEntity.ok(ticketFacade.getByFiltro(filtro));
     }
 
     @GetMapping("detalles/id")

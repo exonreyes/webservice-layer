@@ -5,6 +5,7 @@ import nova.domain.dto.TicketDto;
 import nova.domain.entity.ActividadTicket;
 import nova.domain.entity.Ticket;
 import nova.domain.entity.query.TicketDetallesQuery;
+import nova.domain.entity.query.TicketInfoQuery;
 import nova.presentation.controller.request.ActividadCreateRequest;
 import nova.presentation.controller.request.TicketCreateRequest;
 import org.mapstruct.Mapper;
@@ -14,10 +15,6 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface TicketMapper {
-    @Mapping(target = "area", source = "reporte.area")
-    @Mapping(target = "reporte", source = "reporte")
-    TicketDto toDto(Ticket ticket);
-
     @Mapping(target = "area.id", source = "reporteAreaId")
     @Mapping(target = "area.nombre", source = "reporteAreaNombre")
     @Mapping(target = "reporte.id", source = "reporteId")
@@ -44,4 +41,13 @@ public interface TicketMapper {
     @Mapping(target = "creado", expression = "java(LocalDateTime.now())")
     ActividadTicket commandToEntityActividad(ActividadCreateRequest command);
 
+    @Mapping(target = "reporte.nombre", source = "reporteNombre")
+    @Mapping(target = "reporte.id", source = "reporteId")
+    @Mapping(target = "area.nombre", source = "reporteAreaNombre")
+    @Mapping(target = "area.id", source = "reporteAreaId")
+    @Mapping(target = "estatus.id", source = "estatusId")
+    @Mapping(target = "estatus.nombre", source = "estatusNombre")
+    @Mapping(target = "unidad.clave", source = "unidadClave")
+    @Mapping(target = "unidad.nombre", source = "unidadNombre")
+    TicketDto infoQueryToDto(TicketInfoQuery ticketInfoQuery);
 }

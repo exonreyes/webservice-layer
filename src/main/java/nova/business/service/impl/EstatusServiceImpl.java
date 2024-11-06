@@ -1,6 +1,7 @@
-package nova.business.service;
+package nova.business.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import nova.business.service.IEstatusService;
 import nova.domain.entity.Estatus;
 import nova.persistence.EstatusRepository;
 import org.springframework.stereotype.Service;

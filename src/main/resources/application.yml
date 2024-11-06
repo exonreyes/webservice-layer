@@ -1,6 +1,3 @@
-
-project:
-  version: 1.0.0
 server:
   error:
     include-stacktrace: on_param
@@ -44,10 +41,6 @@ spring:
     #    de procesar la solicitud. Para un ambiente web es mejor que esté en FALSE
     #  main:
     #    lazy-initialization: true
-
-  test:
-    database:
-      replace: none
 #
 #logging:
 #  level:

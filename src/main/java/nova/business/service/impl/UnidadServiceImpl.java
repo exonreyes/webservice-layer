@@ -1,6 +1,7 @@
-package nova.business.service;
+package nova.business.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import nova.business.service.IUnidadService;
 import nova.common.EntityException;
 import nova.domain.entity.ContactoUnidad;
 import nova.domain.entity.Unidad;
