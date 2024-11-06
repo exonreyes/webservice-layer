@@ -1,6 +1,7 @@
-package nova.business.service;
+package nova.business.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import nova.business.service.IAreaService;
 import nova.domain.entity.Area;
 import nova.domain.entity.query.AreaQuery;
 import nova.persistence.AreaRepository;

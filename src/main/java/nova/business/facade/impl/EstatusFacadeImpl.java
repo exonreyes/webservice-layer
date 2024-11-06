@@ -1,6 +1,7 @@
-package nova.business.facade;
+package nova.business.facade.impl;
 
 import lombok.RequiredArgsConstructor;
+import nova.business.facade.EstatusFacade;
 import nova.business.mapper.EstatusMapper;
 import nova.business.service.IEstatusService;
 import nova.domain.dto.EstatusDto;

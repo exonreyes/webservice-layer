@@ -4,6 +4,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.*;
 import nova.business.util.TicketFiltro;
+import nova.common.PageData;
+import nova.common.PageInfo;
 import nova.domain.entity.Ticket;
 import nova.domain.entity.query.TicketInfoQuery;
 import org.springframework.data.domain.Page;
@@ -12,9 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
@@ -23,7 +23,7 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
     private EntityManager entityManager;
 
     @Override
-    public Map<String, Object> findByFiltro(TicketFiltro filtro) {
+    public PageData<TicketInfoQuery> findByFiltro(TicketFiltro filtro) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<TicketInfoQuery> cq = cb.createQuery(TicketInfoQuery.class);
         Root<Ticket> ticket = cq.from(Ticket.class);
@@ -31,6 +31,7 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
         // Unir entidades relacionadas
         Join<Object, Object> unidadJoin = ticket.join("unidad", JoinType.INNER);
         Join<Object, Object> reporteJoin = ticket.join("reporte", JoinType.INNER);
+        Join<Object, Object> estatusJoin = ticket.join("estatus", JoinType.INNER);
 
         // Seleccionar los campos para mapear a TicketInfoDTO
         cq.select(cb.construct(
@@ -38,7 +39,11 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
                 ticket.get("id"),
                 unidadJoin.get("clave"),
                 unidadJoin.get("nombre"),  // Asegúrate que estos atributos existan en la entidad Unidad
+                estatusJoin.get("id"),
+                estatusJoin.get("nombre"),
+                reporteJoin.get("id"),
                 reporteJoin.get("nombre"), // Asegúrate que estos atributos existan en la entidad Reporte
+                reporteJoin.get("area").get("id"),
                 reporteJoin.get("area").get("nombre"), // Asegúrate que estos atributos existan
                 ticket.get("folio"),
                 ticket.get("agente"),
@@ -88,13 +93,10 @@ public class TicketRepositoryCustomImpl implements TicketRepositoryCustom {
         // Contar el total de resultados
         Long totalResults = countByFiltro(filtro);
         Page<TicketInfoQuery> page = new PageImpl<>(resultList, PageRequest.of(filtro.getPage(), filtro.getSize()), totalResults);
-        Map<String, Object> pageResult = new HashMap<>();
-        pageResult.put("rows", page.getNumberOfElements());
-        pageResult.put("total", page.getTotalElements());
-        pageResult.put("pageCount", page.getTotalPages());
 
         // Devolver respuesta paginada
-        return Map.of("page", pageResult, "data", page.getContent());
+        PageData<TicketInfoQuery> dataPage = new PageData<>(page.getContent(), new PageInfo(page.getNumberOfElements(), page.getTotalElements(), page.getTotalPages()));
+        return dataPage;
     }
 
     private Long countByFiltro(TicketFiltro filtro) {

@@ -1,6 +1,7 @@
-package nova.business.facade;
+package nova.business.facade.impl;
 
 import lombok.RequiredArgsConstructor;
+import nova.business.facade.UnidadFacade;
 import nova.business.mapper.UnidadMapper;
 import nova.business.service.IUnidadService;
 import nova.domain.dto.ContactoUnidadDto;
