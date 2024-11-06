@@ -1,7 +1,8 @@
-package nova.business.service;
+package nova.business.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import nova.business.service.IActividadService;
 import nova.business.service.factory.TicketFactory;
 import nova.common.EntityException;
 import nova.domain.entity.ActividadTicket;
@@ -33,11 +34,11 @@ public class ActividadServiceImpl implements IActividadService {
             repository.save(data);
             Optional<Ticket> ticketModel = ticketRepository.findById(data.getTicket().getId());
             if (ticketModel.isPresent()) {
-                var tempTicket=ticketModel.get();
+                var tempTicket = ticketModel.get();
                 tempTicket.setEstatus(new Estatus(newActividad.getEstatus().getId()));
                 ticketRepository.save(tempTicket);
-            }else {
-                throw new EntityException("E1003","No se pudo guardar, ticket no disponible");
+            } else {
+                throw new EntityException("E1003", "No se pudo guardar, ticket no disponible");
             }
         } catch (Exception e) {
             throw new EntityException("E1003", "Error al registra la actividad");

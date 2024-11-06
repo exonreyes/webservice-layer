@@ -1,9 +1,9 @@
 package nova.persistence;
 
 import nova.business.util.TicketFiltro;
-
-import java.util.Map;
+import nova.common.PageData;
+import nova.domain.entity.query.TicketInfoQuery;
 
 public interface TicketRepositoryCustom {
-    Map<String, Object> findByFiltro(TicketFiltro filtro);
+    PageData<TicketInfoQuery> findByFiltro(TicketFiltro filtro);
 }

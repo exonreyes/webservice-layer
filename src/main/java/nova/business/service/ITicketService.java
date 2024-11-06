@@ -1,13 +1,15 @@
 package nova.business.service;
 
 import nova.business.util.TicketFiltro;
+import nova.common.PageData;
 import nova.domain.entity.Ticket;
 import nova.domain.entity.query.TicketDetallesQuery;
-
-import java.util.Map;
+import nova.domain.entity.query.TicketInfoQuery;
 
 public interface ITicketService {
-    Map<String, Object> searchTicketsByFiltro(TicketFiltro filtro);
+    PageData<TicketInfoQuery> searchTicketsByFiltro(TicketFiltro filtro);
+
+    TicketInfoQuery getInfoById(Integer id);
 
     TicketDetallesQuery getDetallesById(Integer id);
 

@@ -1,4 +1,4 @@
-package nova.business.service;
+package nova.business.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import nova.common.EntityException;

@@ -1,6 +1,7 @@
-package nova.business.service;
+package nova.business.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import nova.business.service.IOperatividadService;
 import nova.domain.entity.Operatividad;
 import nova.persistence.OperatividadRepository;
 import org.springframework.stereotype.Service;

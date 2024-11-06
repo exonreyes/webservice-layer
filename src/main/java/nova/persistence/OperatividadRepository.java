@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface OperatividadRepository extends JpaRepository<Operatividad, Integer> {
     @EntityGraph(attributePaths = {"horarios.unidad"})
-    @Override
     List<Operatividad> findAll();
 }

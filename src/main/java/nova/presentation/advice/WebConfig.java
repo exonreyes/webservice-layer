@@ -9,8 +9,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-//    private static final String DATE_TIME_FORMAT = "dd/MM/yyyy HH:mm";
-
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
@@ -28,13 +26,5 @@ public class WebConfig implements WebMvcConfigurer {
         source.registerCorsConfiguration("/**", corsConfig);
         return new CorsFilter(source);
     }
-//
-//    @Bean
-//    public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
-//        return builder -> {
-//            builder.simpleDateFormat(DATE_TIME_FORMAT);
-//            builder.serializers(new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
-//        };
-//    }
 
 }

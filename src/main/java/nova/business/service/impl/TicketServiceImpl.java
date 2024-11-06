@@ -1,28 +1,32 @@
-package nova.business.service;
+package nova.business.service.impl;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import nova.business.mapper.TicketMapper;
+import nova.business.service.ITicketService;
 import nova.business.service.factory.TicketFactory;
 import nova.business.util.TicketFiltro;
 import nova.common.EntityException;
+import nova.common.PageData;
 import nova.domain.entity.Ticket;
 import nova.domain.entity.query.TicketDetallesQuery;
+import nova.domain.entity.query.TicketInfoQuery;
 import nova.persistence.TicketRepository;
 import nova.persistence.TicketRepositoryCustom;
 import org.springframework.stereotype.Service;
-
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class TicketServiceImpl implements ITicketService {
     private final TicketRepository ticketRepository;
     private final TicketRepositoryCustom customRepository;
-    private final TicketMapper mapper;
 
-    public Map<String, Object> searchTicketsByFiltro(TicketFiltro filtro) {
+    public PageData<TicketInfoQuery> searchTicketsByFiltro(TicketFiltro filtro) {
         return customRepository.findByFiltro(filtro);
+    }
+
+    @Override
+    public TicketInfoQuery getInfoById(Integer id) {
+        return ticketRepository.findById(id, TicketInfoQuery.class).orElseThrow(() -> new EntityException("E1005", "No se encontró el ticket especificado"));
     }
 
     @Override
